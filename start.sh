@@ -44,8 +44,7 @@ stream_distance 300.0
 stream_rate 1000" > server.cfg
 fi
 
-    echo "DE NUEVO IR A HOME CONTAINER"
 cd /home/container
 MODIFIED_STARTUP=`echo ${STARTUP} | perl -pe 's@\{\{(.*?)\}\}@$ENV{$1}@g'`
-        echo "EMEPZANDO SERVIDOR"
+        echo "Server is starting."
 ./samp03svr
