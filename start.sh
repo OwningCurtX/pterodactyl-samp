@@ -68,6 +68,7 @@ stream_rate 1000" > server.cfg
 fi
 
 cd /home/container
-MODIFIED_STARTUP=`echo ${STARTUP} | perl -pe 's@\{\{(.*?)\}\}@$ENV{$1}@g'`
-        echo "Server is starting."
-./samp03svr
+
+echo "Server is starting."
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
+exec ./samp03svr -n -t -u
