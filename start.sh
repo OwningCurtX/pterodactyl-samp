@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 CHK_FILE="/home/container/samp03svr"
 if [ -f $CHK_FILE ]; then
     echo "Executable of SAMP exists, not downloading. To update, delezte samp03svr."
@@ -65,6 +63,7 @@ stream_distance 300.0
 stream_rate 1000" > server.cfg
 fi
 
+set -e
 cd /home/container
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
 echo ":/home/container$ ${MODIFIED_STARTUP}"
