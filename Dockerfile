@@ -1,11 +1,10 @@
-# Dockerfile for SAMP on Pterodactyl Panel
-FROM ubuntu:16.04
+FROM debian:latest
 
 
 MAINTAINER Curt H. <curt@curtcreation.net>
 
  RUN dpkg --add-architecture i386
- RUN apt-get update && apt-get install -y wget psmisc curl openssl ca-certificates perl libtbb-dev \
+ RUN apt-get update && apt-get install -y wget unzip psmisc curl openssl ca-certificates perl libtbb-dev \
  && apt-get update \
  && apt-get update \
  && apt-get install -y libstdc++6 libgcc1 zlib1g libncurses5 \
