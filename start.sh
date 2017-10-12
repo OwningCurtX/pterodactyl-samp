@@ -1,4 +1,6 @@
-sleep 3
+#!/bin/bash
+
+set -e
 
 CHK_FILE="/home/container/samp03svr"
 if [ -f $CHK_FILE ]; then
@@ -28,7 +30,7 @@ if [ -f "/home/container/server.cfg" ]; then
 echo "GameNode.Pro: There's wrong on max player slot. Generating another configuration file."
 rm /home/container/server.cfg
 echo "lanmode 0
-rcon_password changeme
+rcon_password change-this-rcon-password-gamenodepro
 maxplayers ${PLAYERSLOT}
 port ${SERVER_PORT}
 hostname SA-MP 0.3 Server
@@ -46,7 +48,7 @@ stream_rate 1000" > /home/container/server.cfg
     fi
 else
 echo "lanmode 0
-rcon_password changeme
+rcon_password change-this-rcon-password-gamenodepro
 maxplayers 50
 port ${SERVER_PORT}
 hostname SA-MP 0.3 Server
@@ -64,7 +66,8 @@ stream_rate 1000" > server.cfg
 fi
 
 cd /home/container
+MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
+echo ":/home/container$ ${MODIFIED_STARTUP}"
 
-echo "Server is starting."
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
-exec ./samp03svr -n -t -u
+exec ${MODIFIED_STARTUP} -n -t -u
