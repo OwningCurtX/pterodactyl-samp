@@ -22,14 +22,14 @@ fi
 if [ -f "/home/container/server.cfg" ]; then
     echo "server.cfg exists, not generating file."
     echo "GameNode.Pro: Checking max player slot."
-    if [[ $(grep "maxplayers ${PLAYERSLOT}" /home/container/server.cfg) ]]; then 
+    if [[ $(grep "maxplayers ${STARTUP}" /home/container/server.cfg) ]]; then 
         echo "GameNode.Pro: Nothing wrong on max player slot. Continuing the process..."
     else
 echo "GameNode.Pro: There's wrong on max player slot. Generating another configuration file."
 rm /home/container/server.cfg
 echo "lanmode 0
 rcon_password change-this-rcon-password-gamenodepro
-maxplayers ${PLAYERSLOT}
+maxplayers ${STARTUP}
 port ${SERVER_PORT}
 hostname SA-MP 0.3 Server
 gamemode0 grandlarc 1
@@ -47,7 +47,7 @@ stream_rate 1000" > /home/container/server.cfg
 else
 echo "lanmode 0
 rcon_password change-this-rcon-password-gamenodepro
-maxplayers 50
+maxplayers ${STARTUP}
 port ${SERVER_PORT}
 hostname SA-MP 0.3 Server
 gamemode0 grandlarc 1
@@ -65,7 +65,7 @@ fi
 
 set -e
 cd /home/container
-MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
+MODIFIED_STARTUP=`eval echo $(echo ./samp03svr | sed -e 's/{{/${/g' -e 's/}}/}/g')`
 echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
