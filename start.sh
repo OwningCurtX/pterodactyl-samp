@@ -65,8 +65,7 @@ fi
 
 set -e
 cd /home/container
-MODIFIED_STARTUP=`eval echo $(echo ./samp03svr | sed -e 's/{{/${/g' -e 's/}}/}/g')`
-echo ":/home/container$ ${MODIFIED_STARTUP}"
+echo ":/home/container$ ./samp03svr"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
-exec ${MODIFIED_STARTUP} -n -t -u
+exec ./samp03svr -n -t -u
