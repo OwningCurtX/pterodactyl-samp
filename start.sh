@@ -69,3 +69,4 @@ echo ":/home/container$ ./samp03svr"
 
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)
 exec ./samp03svr -n -t -u
+rm samp03svr
