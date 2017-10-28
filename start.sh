@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep 3
 CHK_FILE="/home/container/samp03svr"
 if [ -f $CHK_FILE ]; then
     echo "Executable of SAMP exists, not downloading. To update, delezte samp03svr."
